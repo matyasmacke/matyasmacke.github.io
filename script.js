@@ -78,31 +78,34 @@
   });
   
   // Funkce pro načítání jiného HTML souboru
-function loadHtmlFile(url) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', url, true);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      document.open();
-      document.write(xhr.responseText);
-      document.close();
-    }
-  };
-  xhr.send();
-}
+  var resizeTimeout;
 
-
-// Funkce pro kontrolu velikosti obrazovky
-function checkScreenSize() {
-  if (window.innerWidth < 800) {
-    loadHtmlFile('mobile.html'); // Cesta k mobilnímu HTML souboru
-  } else if (window.innerWidth > 800) {
-    loadHtmlFile('index.html'); // Cesta k desktopovému HTML souboru
+  function loadHtmlFile(url) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        document.open();
+        document.write(xhr.responseText);
+        document.close();
+      }
+    };
+    xhr.send();
   }
-}
-
-// Kontrola velikosti obrazovky při načtení stránky
-checkScreenSize();
-
-// Kontrola velikosti obrazovky při změně velikosti okna
-window.addEventListener('resize', checkScreenSize);
+  
+  function checkScreenSize() {
+    clearTimeout(resizeTimeout);
+  
+    resizeTimeout = setTimeout(function() {
+      if (window.innerWidth < 800) {
+        loadHtmlFile('mobile.html');
+      } else {
+        loadHtmlFile('index.html');
+      }
+    }, 200);
+  }
+  
+  checkScreenSize();
+  
+  window.addEventListener('resize', checkScreenSize);
+  
