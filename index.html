@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matyáš Macke</title>
+    <link rel="stylesheet" href="style/style.css" />
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/f6c4cb663e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <nav class="nav">
+      <ul>
+        <li><a href="#" class="nav-link active" data-link="home">Home</a></li>
+        <li><a href="#about-me" class="nav-link" data-link="about">O mně</a></li>
+        <li><a href="#stories" class="nav-link" data-link="portfolio">Příběhy</a></li>
+        <li><a href="#contact" class="nav-link" data-link="contact">Kontakt</a></li>
+      </ul>
+    </nav>
+
+    <div class="bg-image">
+      <div class="overlay">
+        <h1>Matyáš Macke</h1>
+        <p>creepypasty | bowling | urbex</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <section class="about about-window" id="about-me">
+        <h2>O mně</h2>
+        <p>
+          Jmenuji se Matyáš Macke a je mi 17 let. Studuji informační technologie na střední škole <a href="https://oaneveklov.cz/" style="text-decoration: none;" onclick="redirect()" target="_blank">Obchodní akademie Neveklov</a>. Mým oblýbeným 
+          sportem je Bowling. Hraji ho už přibližně 12 let a můj nejvyšší nához je 277. Hodně mě zajímají počítače, sítě, umělá inteligence a programování a stojím si za
+          názorem, že počítače jsou dneska nedílnou součástí našeho světa a je to budoucnost lidstva. 
+          Moje oblíbená činnost je procházení opuštěných míst, konkrétně opuštěných nádraží a kolejí. Doufám, že se vám líbí můj web. 
+        </p>
+      </section>
+    </div>
+
+    <section class="portfolio" id="stories">
+    <h2 class="story">Moje vlastní příběhy</h2>
+    <div class="story-container">
+      <div class="story-box">
+        <a href="#" onclick="working()">
+          <img src="images/nkzhs.jpg" alt="Kolej"/>
+          <h3>Nekonečná kolej za hranicí světa</h3>
+        </a>
+      </div>
+      
+      
+    </div>
+  </section>
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col">
+          <h4>info :</h4>
+          <ul>
+            <li><a href="#" onclick="soon()">F.A.Q</a></li>
+            <li><a href="#stories" onclick="soon()">ke stažení</a></li>
+            <li><a href="#stories">moje příběhy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>kontaktuj mě :</h4>
+          <div class="social-links">
+            <a href="https://www.youtube.com/@Macke." target="_blank" id="youtube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/matyas.macke" target="_blank" id="instagram"><i class="fab fa-instagram" ></i></a>
+            <a href="#" onclick="errormsg()" id="creepypasty"><i class="fa-solid fa-ghost"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+ </footer>
+  
+  </body>
+</html>

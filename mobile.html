@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matyáš Macke - Mobile</title>
+  <link rel="stylesheet" href="style/mobile.css">
+  <script src="https://kit.fontawesome.com/f6c4cb663e.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <h1>Matyáš Macke</h1>
+    <p class="subtitle">creepypasty | bowling | urbex</p>
+  <div class="container">
+    <div class="buttons">
+      <a class="button" href="#" onclick="toggleText()" id="about-button">O mně</a>
+      <p class="about" id="about-text">Jmenuji se Matyáš Macke a je mi 17 let. Studuji informační technologie na střední škole <a href="https://oaneveklov.cz/" style="text-decoration: none; color: aqua;" onclick="redirect()" target="_blank">Obchodní akademie Neveklov</a>. Mým oblýbeným 
+        sportem je Bowling. Hraji ho už přibližně 12 let a můj nejvyšší nához je 277. Hodně mě zajímají počítače, sítě, umělá inteligence a programování a stojím si za
+        názorem, že počítače jsou dneska nedílnou součástí našeho světa a je to budoucnost lidstva. 
+        Moje oblíbená činnost je procházení opuštěných míst, konkrétně opuštěných nádraží a kolejí. Doufám, že se vám líbí můj web. </p>
+      <a class="button" href="#" onclick="toggleTextStory()" id="story-button">Moje příběhy</a>
+      <a class="stories" href="#" style="display: none;" onclick="working()">Nekonečná kolej za hranicí světa</a>
+      
+    </div>
+
+    <div class="social">
+        <a href="https://www.youtube.com/@Macke." target="_blank" id="youtube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/matyas.macke" target="_blank" id="instagram"><i class="fab fa-instagram" ></i></a>
+        <a href="#" onclick="errormsg()" id="creepypasty"><i class="fa-solid fa-ghost"></i></a>
+    </div>
+
+  </div>
+</body>
+<script>
+    function errormsg(){
+        Swal.fire({
+        icon: 'error',
+        title: 'ERROR 404',
+        text: 'Něco se pokazilo při načítání stránky.',
+        })
+    }
+    function working(){
+    Swal.fire({
+      title: 'Již brzy!',
+      text: 'Na tomto příběhu momentálně pracuji.',
+    })
+  }
+
+    function toggleText() {
+        var text = document.getElementById("about-text");
+        var button = document.getElementById("about-button");
+
+        if (text.style.display === "none") {
+            text.style.display = "block";
+            button.textContent = "Skrýt";
+        } else {
+            text.style.display = "none";
+            button.textContent = "O mně";
+        }
+    }
+
+    function toggleTextStory() {
+        var stories = document.getElementsByClassName("stories");
+        var button = document.getElementById("story-button");
+
+        for (var i = 0; i < stories.length; i++) {
+          if (stories[i].style.display === "none") {
+            stories[i].style.display = "block";
+          } else {
+            stories[i].style.display = "none";
+          }
+        }
+
+        if (button.textContent === "Moje příběhy") {
+          button.textContent = "Skrýt";
+        } else {
+          button.textContent = "Moje příběhy";
+        }
+    }
+</script>
+
+</html>
