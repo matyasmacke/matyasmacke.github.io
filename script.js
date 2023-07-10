@@ -1,25 +1,5 @@
 // document.addEventListener ('contextmenu', event => event.preventDefault ());
 
-window.addEventListener("scroll", function() {
-    var navbar = document.querySelector("nav");
-    if (window.pageYOffset > 100) {
-      navbar.style.backgroundColor = "rgba(53, 53, 53, 0.587)";
-    } else {
-      navbar.style.backgroundColor = "rgba(0, 0, 0, 0)";
-    }
-  });
-  
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  navLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const targetId = link.getAttribute('href');
-      const targetSection = document.querySelector(targetId);
-      targetSection.scrollIntoView({behavior: 'smooth'});
-    });
-  });
-
   function errormsg(){
     Swal.fire({
       icon: 'error',
