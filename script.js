@@ -78,34 +78,22 @@
   });
   
   // Funkce pro načítání jiného HTML souboru
-  var resizeTimeout;
+  window.addEventListener("resize", getTemplate);
 
-  function loadHtmlFile(url) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        document.open();
-        document.write(xhr.responseText);
-        document.close();
+  CurrentPage = 'DesktopPage';
+  
+  function getTemplate() {
+      if (screen.width >= 767 && CurrentPage != 'DesktopPage') {
+          return window.location.replace("index.html");
       }
-    };
-    xhr.send();
+  
+      if (screen.width < 767 && CurrentPage != 'MobilePage') {
+          return window.location.replace("mobile.html");
+      }
   }
   
-  function checkScreenSize() {
-    clearTimeout(resizeTimeout);
+  getTemplate();
   
-    resizeTimeout = setTimeout(function() {
-      if (window.innerWidth < 800) {
-        loadHtmlFile('mobile.html');
-      } else {
-        loadHtmlFile('index.html');
-      }
-    }, 200);
-  }
   
-  checkScreenSize();
   
-  window.addEventListener('resize', checkScreenSize);
   
