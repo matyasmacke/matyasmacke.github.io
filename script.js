@@ -96,7 +96,7 @@ function loadHtmlFile(url) {
 function checkScreenSize() {
   if (window.innerWidth < 800) {
     loadHtmlFile('mobile.html'); // Cesta k mobilnímu HTML souboru
-  } else {
+  } else if (window.innerWidth > 800) {
     loadHtmlFile('index.html'); // Cesta k desktopovému HTML souboru
   }
 }
