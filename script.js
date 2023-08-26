@@ -1,5 +1,25 @@
 // document.addEventListener ('contextmenu', event => event.preventDefault ());
 
+window.addEventListener("scroll", function() {
+    var navbar = document.querySelector("nav");
+    if (window.pageYOffset > 100) {
+      navbar.style.backgroundColor = "rgba(53, 53, 53, 0.587)";
+    } else {
+      navbar.style.backgroundColor = "rgba(0, 0, 0, 0)";
+    }
+  });
+  
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      targetSection.scrollIntoView({behavior: 'smooth'});
+    });
+  });
+
   function errormsg(){
     Swal.fire({
       icon: 'error',
@@ -78,22 +98,31 @@
   });
   
   // Funkce pro načítání jiného HTML souboru
-  window.addEventListener("resize", getTemplate);
+function loadHtmlFile(url) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', url, true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      document.open();
+      document.write(xhr.responseText);
+      document.close();
+    }
+  };
+  xhr.send();
+}
 
-  CurrentPage = 'DesktopPage';
-  
-  function getTemplate() {
-      if (screen.width >= 767 && CurrentPage != 'DesktopPage') {
-          return window.location.replace("index.html");
-      }
-  
-      if (screen.width < 767 && CurrentPage != 'MobilePage') {
-          return window.location.replace("mobile.html");
-      }
+
+// Funkce pro kontrolu velikosti obrazovky
+function checkScreenSize() {
+  if (window.innerWidth < 800) {
+    loadHtmlFile('mobile.html'); // Cesta k mobilnímu HTML souboru
+  } else {
+    loadHtmlFile('index.html'); // Cesta k desktopovému HTML souboru
   }
-  
-  getTemplate();
-  
-  
-  
-  
+}
+
+// Kontrola velikosti obrazovky při načtení stránky
+checkScreenSize();
+
+// Kontrola velikosti obrazovky při změně velikosti okna
+window.addEventListener('resize', checkScreenSize);
