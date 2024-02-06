@@ -14,6 +14,22 @@ let platformType = "";
 let getGong = new Audio("audio/gong.mp3");
 let getEndGong = new Audio("audio/endgong.mp3");
 
+fetch('cesta_k_json_souboru.json')
+    .then(response => response.json())
+    .then(data => {
+        for (var i = 0; i < data.audioFiles.length; i++) {
+            preloadAudio(data.audioFiles[i]);
+        }
+    });
+
+
+function preloadAudio(url) {
+    var audio = new Audio();
+    audio.src = url;
+    audio.preload = "auto";
+}
+
+
 function setAnnounceType (anntype) {
     announceType = anntype;
     document.getElementById("announcement-type-buttons").style.display = "none";
