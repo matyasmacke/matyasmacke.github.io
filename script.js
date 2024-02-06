@@ -1,128 +1,506 @@
-// document.addEventListener ('contextmenu', event => event.preventDefault ());
+let announceType = "";
+let trainType = "";
+let trainNumber = "";
+let trainLine = "";
+let trainOperator = "";
+let trainDestination = "";
+let trainDeparture = "";
+let trainTrack = "";
+let trainPlatform = "";
+let trainDelay = "";
+let delayReason = "";
+let cancelReason = "";
+let platformType = "";
+let getGong = new Audio("audio/gong.mp3");
+let getEndGong = new Audio("audio/endgong.mp3");
 
-window.addEventListener("scroll", function() {
-    var navbar = document.querySelector("nav");
-    if (window.pageYOffset > 100) {
-      navbar.style.backgroundColor = "rgba(53, 53, 53, 0.587)";
-    } else {
-      navbar.style.backgroundColor = "rgba(0, 0, 0, 0)";
-    }
-  });
-  
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  navLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const targetId = link.getAttribute('href');
-      const targetSection = document.querySelector(targetId);
-      targetSection.scrollIntoView({behavior: 'smooth'});
-    });
-  });
-
-  function errormsg(){
-    Swal.fire({
-      icon: 'error',
-      title: 'ERROR 404',
-      text: 'Něco se pokazilo při načítání stránky.',
-    })
-  }
-  
-  function working(){
-    Swal.fire({
-      title: 'Již brzy!',
-      text: 'Na tomto příběhu momentálně pracuji.',
-    })
-  }
-
-  function soon(){
-    Swal.fire({
-      title: 'Již brzy!',
-      text: 'Na této funkci webu momentálně pracuji.',
-    })
-  }
-
-  function redirect(){
-    Swal.fire({
-      icon: 'success',
-      title: 'Úspěšně přesměrováno.',
-    })
-  }
-
-  function inspect(){
-    Swal.fire({
-      icon: 'error',
-      title: 'Inspect nemůžeš používat.',
-    })
-  }
-
-  function copy(){
-    Swal.fire({
-      icon: 'error',
-      title: 'Kopírování je zakázáno.',
-    })
-  }
-  function source(){
-    Swal.fire({
-      icon: 'error',
-      title: 'Nemůžeš si zobrazit zdrojový kód.',
-    })
-  }
-
-  window.addEventListener("keydown", function (e) {
-    // pokud je stisknuto ctrl+c
-    if (e.ctrlKey && e.keyCode == 67) {
-      // zruš akci
-      e.preventDefault();
-      // zobraz zprávu
-      copy();
-    }
-    if (e.metaKey && e.keyCode == 67) {
-      // zruš akci
-      e.preventDefault();
-      // zobraz zprávu
-      copy();
-    }
-    if (e.keyCode == 123) {
-      // zruš akci
-      e.preventDefault();
-      // zobraz zprávu
-      inspect();
-    }
-    if ((e.ctrlKey || e.metaKey) && e.keyCode == 85) {
-      // zruš akci
-      e.preventDefault();
-      // zobraz zprávu
-      source();
-    }
-  });
-  
-  // Funkce pro načítání jiného HTML souboru
-function loadHtmlFile(url) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', url, true);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      document.open();
-      document.write(xhr.responseText);
-      document.close();
-    }
-  };
-  xhr.send();
+function setAnnounceType (anntype) {
+    announceType = anntype;
+    document.getElementById("announcement-type-buttons").style.display = "none";
+    document.getElementById("train-type-buttons").style.display = "block";
 }
 
-
-// Funkce pro kontrolu velikosti obrazovky
-function checkScreenSize() {
-  if (window.innerWidth < 800) {
-    loadHtmlFile('mobile.html'); // Cesta k mobilnímu HTML souboru
-  } else {
-    loadHtmlFile('index.html'); // Cesta k desktopovému HTML souboru
-  }
+function setTrainType (type) {
+    trainType = type;
+    document.getElementById("train-type-buttons").style.display = "none";
+    document.getElementById("train-number-buttons").style.display = "block";
 }
 
-// Kontrola velikosti obrazovky při načtení stránky
-checkScreenSize();
+function setTrainNumber (number) {
+    trainNumber = number;
+    document.getElementById("train-number-buttons").style.display = "none";
+    document.getElementById("train-line-buttons").style.display = "block";
+    
+}
 
-// Kontrola velikosti obrazovky při změně velikosti okna
-window.addEventListener('resize', checkScreenSize);
+function setTrainLine (line) {
+    trainLine = line;
+    document.getElementById("train-line-buttons").style.display = "none";
+    document.getElementById("train-operator-buttons").style.display = "block";
+}
+
+function setTrainOperator (operator) {
+    trainOperator = operator;
+    document.getElementById("train-operator-buttons").style.display = "none";
+    document.getElementById("train-destination-buttons").style.display = "block";
+}
+
+function setTrainDestination (destination) {
+    trainDestination = destination;
+    document.getElementById("train-destination-buttons").style.display = "none";
+    document.getElementById("train-departure-buttons").style.display = "block";
+}
+
+function setTrainDeparture (departure) {
+    trainDeparture = departure;
+    document.getElementById("train-departure-buttons").style.display = "none";
+    if (announceType == "zpozdeni") {
+        document.getElementById("train-delay-buttons").style.display = "block";
+    } 
+    
+    if (announceType == "odjede") {
+        document.getElementById("train-track-buttons").style.display = "block";
+    } 
+
+    if (announceType == "pristaven") {
+        document.getElementById("train-track-buttons").style.display = "block";
+    } 
+
+    if (announceType == "prijede") {
+        document.getElementById("train-track-buttons").style.display = "block";
+    } 
+    
+    if (announceType == "nejede") {
+        document.getElementById("train-cancel_reason-buttons").style.display = "block";
+    }
+}
+
+function setTrainDelay (delay) {
+    trainDelay = delay;
+    document.getElementById("train-delay-buttons").style.display = "none";
+    document.getElementById("train-delay_reason-buttons").style.display = "block";
+}
+
+function setTrainDelayReason (reason) {
+    delayReason = reason;
+    document.getElementById("train-delay_reason-buttons").style.display = "none";
+    document.getElementById("announce-button").style.display = "block";
+}
+
+function setTrainTrack (track) {
+    trainTrack = track;
+    document.getElementById("train-track-buttons").style.display = "none";
+    document.getElementById("train-platform-buttons").style.display = "block";
+}
+
+function setTrainPlatform (platform) {
+    platformType = platform;
+    document.getElementById("train-platform-buttons").style.display = "none";
+    document.getElementById("announce-button").style.display = "block";
+}
+
+function setCancelReason (cancel) {
+    cancelReason = cancel;
+    document.getElementById("train-cancel_reason-buttons").style.display = "none";
+    document.getElementById("announce-button").style.display = "block";
+}
+
+function playAnnouncement() {
+    getGong.play();
+
+    if (announceType == "odjede") {
+        getGong.addEventListener('ended', function () {
+            let getTrainType = new Audio(`audio/${trainType}.mp3`)
+            getTrainType.play(); 
+
+            getTrainType.addEventListener('ended', function() {
+                let getNumber = new Audio(`audio/cislo.mp3`)
+                getNumber.play();
+
+                getNumber.addEventListener('ended', function() {
+                    let getTrainNumber = new Audio(`audio/${trainNumber}.mp3`) 
+                    getTrainNumber.play();
+
+                    getTrainNumber.addEventListener('ended', function() {
+                        let getLine = new Audio(`audio/linky.mp3`)
+                        getLine.play();
+
+                        getLine.addEventListener('ended', function() {
+                            let getTrainLine = new Audio(`audio/${trainLine}.mp3`)
+                            getTrainLine.play();
+
+                            getTrainLine.addEventListener('ended', function() {
+                                let getTrainOperator = new Audio(`audio/${trainOperator}.mp3`)
+                                getTrainOperator.play();
+
+                                getTrainOperator.addEventListener('ended', function() {
+                                    let getDestination = new Audio(`audio/smer.mp3`)
+                                    getDestination.play();
+
+                                    getDestination.addEventListener('ended', function() {
+                                        let getTrainDestination = new Audio(`audio/${trainDestination}.mp3`)
+                                        getTrainDestination.play();
+
+                                        getTrainDestination.addEventListener('ended', function() {
+                                            let getDeparture = new Audio(`audio/sodjezdem.mp3`)
+                                            getDeparture.play();
+
+                                            getDeparture.addEventListener('ended', function() {
+                                                let getTrainDeparture = new Audio(`audio/${trainDeparture}.mp3`)
+                                                getTrainDeparture.play();
+                                                
+                                                getTrainDeparture.addEventListener('ended', function() {
+                                                    let getPlatform = new Audio(`audio/odjede_nastupiste.mp3`)
+                                                    getPlatform.play();
+
+                                                    getPlatform.addEventListener('ended', function() {
+                                                        let getTrainTrack = new Audio(`audio/nastupiste/${trainTrack}_nastupiste.mp3`)
+                                                        getTrainTrack.play()
+                                                        
+                                                        getTrainTrack.addEventListener('ended', function() {
+                                                            let getPlatformType = new Audio(`audio/nastupiste/${platformType}.mp3`)
+                                                            getPlatformType.play()
+        
+                                                            getPlatformType.addEventListener('ended', function() {
+                                                                getEndGong.play();
+
+                                                                getEndGong.addEventListener('ended', function() {
+                                                                    location.reload();
+                                                                })
+                                                                
+                                                            })
+                                                        })
+                                                    })
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    } else if (announceType == "zpozdeni") {
+        getGong.addEventListener('ended', function () {
+            let getAnnouncementType = new Audio(`audio/${announceType}.mp3`)
+            getAnnouncementType.play();
+
+            getAnnouncementType.addEventListener('ended', function () {
+                let getTrainType = new Audio(`audio/${trainType}.mp3`)
+                getTrainType.play(); 
+
+                getTrainType.addEventListener('ended', function () {
+                    let getNumber = new Audio(`audio/cislo.mp3`)
+                    getNumber.play();
+
+                    getNumber.addEventListener('ended', function() {
+                        let getTrainNumber = new Audio(`audio/${trainNumber}.mp3`)
+                        getTrainNumber.play();
+
+                        getTrainNumber.addEventListener('ended', function() {
+                            let getLine = new Audio(`audio/linky.mp3`)
+                            getLine.play()
+
+                            getLine.addEventListener('ended', function() {
+                                let getTrainLine = new Audio(`audio/${trainLine}.mp3`)
+                                getTrainLine.play();
+
+                                getTrainLine.addEventListener('ended', function() {
+                                    let getTrainOperator = new Audio(`audio/${trainOperator}.mp3`)
+                                    getTrainOperator.play();
+
+                                    getTrainOperator.addEventListener('ended', function () {
+                                        let getDestination = new Audio(`audio/smer.mp3`)
+                                        getDestination.play();
+
+                                        getDestination.addEventListener('ended', function() {
+                                            let getTrainDestination = new Audio(`audio/${trainDestination}.mp3`)
+                                            getTrainDestination.play();
+
+                                            getTrainDestination.addEventListener('ended', function () {
+                                                let getDeparture = new Audio(`audio/sodjezdem.mp3`)
+                                                getDeparture.play();
+
+                                                getDeparture.addEventListener('ended', function() {
+                                                    let getTrainDeparture = new Audio(`audio/${trainDeparture}.mp3`)
+                                                    getTrainDeparture.play();
+
+                                                    getTrainDeparture.addEventListener('ended', function () {
+                                                        let getTrainDelay = new Audio(`audio/zpozdeni/${trainDelay}_zpozdeni.mp3`)
+                                                        getTrainDelay.play();
+
+                                                        getTrainDelay.addEventListener('ended', function() {
+                                                            let getDelay = new Audio(`audio/zpozdeni/dobazpozdeni.mp3`)
+                                                            getDelay.play();
+
+                                                            getDelay.addEventListener('ended', function() {
+                                                                let getDelayAnnouncement = new Audio(`audio/zpozdeni/opozden.mp3`)
+                                                                getDelayAnnouncement.play();
+
+                                                                getDelayAnnouncement.addEventListener('ended', function() {
+                                                                    let getDelayReason = new Audio(`audio/zpozdeni/${delayReason}.mp3`)
+                                                                    getDelayReason.play();
+
+                                                                    getDelayReason.addEventListener('ended', function() {
+                                                                        if (delayReason == "mimoradnaudalost") {
+                                                                            let getInfoOperator = new Audio(`audio/informacedopravce.mp3`)
+                                                                            getInfoOperator.play()
+
+                                                                            getInfoOperator.addEventListener('ended', function() {
+                                                                                getEndGong.play();
+                                                                        
+                                                                                getEndGong.addEventListener('ended', function() {
+                                                                                    location.reload();
+                                                                                })
+                                                                            })
+                                                                        } else if (delayReason == "lopatkanauhli" || "provozniduvod" || "technickazavada" || "vyluka") {
+                                        
+                                                                            getEndGong.play();
+                                                                    
+                                                                            getEndGong.addEventListener('ended', function() {
+                                                                                location.reload();
+                                                                            })
+                                                                        }
+                                                                    })
+                                                                    
+                                                                })
+                                                            })
+                                                        })
+                                                    })
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    } else if (announceType == "pristaven") {
+        getGong.addEventListener('ended', function () {
+            let getTrainType = new Audio(`audio/${trainType}.mp3`)
+            getTrainType.play(); 
+
+            getTrainType.addEventListener('ended', function() {
+                let getNumber = new Audio(`audio/cislo.mp3`)
+                getNumber.play();
+
+                getNumber.addEventListener('ended', function() {
+                    let getTrainNumber = new Audio(`audio/${trainNumber}.mp3`) 
+                    getTrainNumber.play();
+
+                    getTrainNumber.addEventListener('ended', function() {
+                        let getLine = new Audio(`audio/linky.mp3`)
+                        getLine.play();
+
+                        getLine.addEventListener('ended', function() {
+                            let getTrainLine = new Audio(`audio/${trainLine}.mp3`)
+                            getTrainLine.play();
+
+                            getTrainLine.addEventListener('ended', function() {
+                                let getTrainOperator = new Audio(`audio/${trainOperator}.mp3`)
+                                getTrainOperator.play();
+
+                                getTrainOperator.addEventListener('ended', function() {
+                                    let getDestination = new Audio(`audio/smer.mp3`)
+                                    getDestination.play();
+
+                                    getDestination.addEventListener('ended', function() {
+                                        let getTrainDestination = new Audio(`audio/${trainDestination}.mp3`)
+                                        getTrainDestination.play();
+
+                                        getTrainDestination.addEventListener('ended', function() {
+                                            let getDeparture = new Audio(`audio/sodjezdem.mp3`)
+                                            getDeparture.play();
+
+                                            getDeparture.addEventListener('ended', function() {
+                                                let getTrainDeparture = new Audio(`audio/${trainDeparture}.mp3`)
+                                                getTrainDeparture.play();
+                                                
+                                                getTrainDeparture.addEventListener('ended', function() {
+                                                    let getPlatform = new Audio(`audio/pristaven_nastupiste.mp3`)
+                                                    getPlatform.play();
+
+                                                    getPlatform.addEventListener('ended', function() {
+                                                        let getTrainTrack = new Audio(`audio/nastupiste/${trainTrack}_nastupiste.mp3`)
+                                                        getTrainTrack.play()
+                                                        
+                                                        getTrainTrack.addEventListener('ended', function() {
+                                                            let getPlatformType = new Audio(`audio/nastupiste/${platformType}.mp3`)
+                                                            getPlatformType.play()
+        
+                                                            getPlatformType.addEventListener('ended', function() {
+                                                                getEndGong.play();
+
+                                                                getEndGong.addEventListener('ended', function() {
+                                                                    location.reload();
+                                                                })
+                                                                
+                                                            })
+                                                        })
+                                                    })
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    } else if (announceType == "prijede") {
+        getGong.addEventListener('ended', function () {
+            let getTrainType = new Audio(`audio/${trainType}.mp3`)
+            getTrainType.play(); 
+
+            getTrainType.addEventListener('ended', function() {
+                let getNumber = new Audio(`audio/cislo.mp3`)
+                getNumber.play();
+
+                getNumber.addEventListener('ended', function() {
+                    let getTrainNumber = new Audio(`audio/${trainNumber}.mp3`) 
+                    getTrainNumber.play();
+
+                    getTrainNumber.addEventListener('ended', function() {
+                        let getLine = new Audio(`audio/linky.mp3`)
+                        getLine.play();
+
+                        getLine.addEventListener('ended', function() {
+                            let getTrainLine = new Audio(`audio/${trainLine}.mp3`)
+                            getTrainLine.play();
+
+                            getTrainLine.addEventListener('ended', function() {
+                                let getTrainOperator = new Audio(`audio/${trainOperator}.mp3`)
+                                getTrainOperator.play();
+
+                                getTrainOperator.addEventListener('ended', function() {
+                                    let getDestination = new Audio(`audio/smer.mp3`)
+                                    getDestination.play();
+
+                                    getDestination.addEventListener('ended', function() {
+                                        let getTrainDestination = new Audio(`audio/${trainDestination}.mp3`)
+                                        getTrainDestination.play();
+
+                                        getTrainDestination.addEventListener('ended', function() {
+                                            let getDeparture = new Audio(`audio/sodjezdem.mp3`)
+                                            getDeparture.play();
+
+                                            getDeparture.addEventListener('ended', function() {
+                                                let getTrainDeparture = new Audio(`audio/${trainDeparture}.mp3`)
+                                                getTrainDeparture.play();
+                                                
+                                                getTrainDeparture.addEventListener('ended', function() {
+                                                    let getPlatform = new Audio(`audio/prijede_nastupiste.mp3`)
+                                                    getPlatform.play();
+
+                                                    getPlatform.addEventListener('ended', function() {
+                                                        let getTrainTrack = new Audio(`audio/nastupiste/${trainTrack}_nastupiste.mp3`)
+                                                        getTrainTrack.play()
+                                                        
+                                                        getTrainTrack.addEventListener('ended', function() {
+                                                            let getPlatformType = new Audio(`audio/nastupiste/${platformType}.mp3`)
+                                                            getPlatformType.play()
+        
+                                                            getPlatformType.addEventListener('ended', function() {
+                                                                getEndGong.play();
+
+                                                                getEndGong.addEventListener('ended', function() {
+                                                                    location.reload();
+                                                                })
+                                                                
+                                                            })
+                                                        })
+                                                    })
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    } else if (announceType == "nejede") {
+        getGong.addEventListener('ended', function () {
+            let getInfo = new Audio(`audio/pozor.mp3`)
+            getInfo.play();
+
+            getInfo.addEventListener('ended', function() {
+                let getTrainType = new Audio(`audio/${trainType}.mp3`)
+                getTrainType.play(); 
+
+                getTrainType.addEventListener('ended', function() {
+                    let getNumber = new Audio(`audio/cislo.mp3`)
+                    getNumber.play();
+
+                    getNumber.addEventListener('ended', function() {
+                        let getTrainNumber = new Audio(`audio/${trainNumber}.mp3`) 
+                        getTrainNumber.play();
+
+                        getTrainNumber.addEventListener('ended', function() {
+                            let getLine = new Audio(`audio/linky.mp3`)
+                            getLine.play();
+
+                            getLine.addEventListener('ended', function() {
+                                let getTrainLine = new Audio(`audio/${trainLine}.mp3`)
+                                getTrainLine.play();
+
+                                getTrainLine.addEventListener('ended', function() {
+                                    let getTrainOperator = new Audio(`audio/${trainOperator}.mp3`)
+                                    getTrainOperator.play();
+
+                                    getTrainOperator.addEventListener('ended', function() {
+                                        let getDestination = new Audio(`audio/smer.mp3`)
+                                        getDestination.play();
+
+                                        getDestination.addEventListener('ended', function() {
+                                            let getTrainDestination = new Audio(`audio/${trainDestination}.mp3`)
+                                            getTrainDestination.play();
+
+                                            getTrainDestination.addEventListener('ended', function() {
+                                                let getDeparture = new Audio(`audio/sodjezdem.mp3`)
+                                                getDeparture.play();
+
+                                                getDeparture.addEventListener('ended', function() {
+                                                    let getTrainDeparture = new Audio(`audio/${trainDeparture}.mp3`)
+                                                    getTrainDeparture.play();
+                                                    
+                                                    getTrainDeparture.addEventListener('ended', function() {
+                                                        let getCanceled = new Audio(`audio/${cancelReason}_nejede.mp3`)
+                                                        getCanceled.play();
+
+                                                        getCanceled.addEventListener('ended', function() {
+                                                            let getInfoOperator = new Audio(`audio/informacedopravce.mp3`)
+                                                            getInfoOperator.play();
+
+                                                            getInfoOperator.addEventListener('ended', function() {
+                                                                getEndGong.play();
+                                                            
+                                                                getEndGong.addEventListener('ended', function() {
+                                                                    location.reload(); 
+                                                                })
+                                                            })
+                                                        })
+                                                    })
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+            
+        })
+    }     
+}

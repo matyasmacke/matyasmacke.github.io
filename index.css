@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html {
+    background: url('images/backgroundimg.jpg') fixed;
+    background-size: cover;
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2e2e2e71;
+    border-bottom: 4px solid rgb(0, 156, 156);
+    margin: 0;
+}
+
+
+.nav a {
+    margin: 10px 20px 10px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #ffffff;
+    padding: 20px 30px;
+    transition: ease 0.15s;
+    border-radius: 50px;
+    font-family: Raleway, Helvetica, sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.nav a:hover {
+    background: rgb(0, 174, 174);
+    box-shadow: 0 5px 25px 0 rgb(0, 255, 255, 0.3);
+    color: black;
+}
+
+.text {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: Raleway, sans-serif;
+}
+
+.text p {
+    font-weight: 900;
+    margin: 8px 0 40px 0;
+    color: #ffffff;
+    font-size: 32px;
+}
+
+.text a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 900;
+    padding: 10px 20px;
+    border-radius: 24px;
+    background-color: rgba(141, 141, 141, 0.718);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: rgb(255, 255, 255);
+    transition: ease-in 0.2s;
+    font-size: 24px;
+}
+
+.text h1 {
+    font-size: 102.8px;
+    margin:  0 0 20px 0;
+    color: #ffffff;
+}
+
+.text a:hover {
+    background: rgba(0, 174, 174, 0.667);
+    box-shadow: 0 5px 25px 0 rgb(0, 255, 255, 0.3);
+    transition: ease-in 0.2s;
+    color: #ffffff;
+    padding: 10px 30px;
+}
+
+.about {
+    display: block;
+    position: relative;
+    text-align: center;
+    justify-content: center;
+    font-family: Raleway, sans-serif;
+    color: #ffffff;
+    padding: 20px 30px 20px 30px;
+    border-radius: 8px;
+    margin: 80px 150px 15px 150px;
+    background-color: rgba(26, 26, 26, 0.624);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    
+}
+
+.about p {
+    font-weight: 900;
+    font-size: 28px;
+}
+
+.about p a {
+    color: rgb(0, 200, 200);
+}
+
+.about p a:active {
+    color: rgb(0, 137, 137);
+}
+
+.about h1 {
+    font-size: 48px;
+}
+
+.faq {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: Raleway, sans-serif;
+    color: #ffffff;
+    font-size: 40px;
+}
+
+.faq p {
+    font-weight: 900;
+}
+.project {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+}
+
+.project a {
+    text-decoration: none;
+    width: 600px;  
+    height: 600px;
+    border-radius: 5%;
+    border: 2px solid rgba(0, 0, 0, 0); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 100px 50px 80px 50px;
+    color: #ffffff;
+    transition: ease-in 0.2s;
+    background-color: rgba(51, 51, 51, 0.791);
+    font-size: 48px;
+    flex: 1;
+    font-family: Raleway, sans-serif;
+    text-transform: uppercase;
+}
+
+.project a:hover {
+    box-shadow: 0 5px 25px 0 rgb(0, 255, 255, 0.3);
+    border: 2px solid #00918a;
+    background-color: rgba(0, 128, 128, 0.791);
+}
+
+.stories {
+    background-color: rgba(26, 26, 26, 0.624);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0 0 0;
+    margin: 120px 150px 15px 150px;
+    border-radius: 8px;
+    font-family: Raleway, sans-serif;
+    color: white;
+}
+
+.story-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  
+.story-box img {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 5%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.story-box h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.story-box a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+.story-box:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px 4px #00a3a3;
+}
+
+.stories .story h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+    text-transform: uppercase;
+  }

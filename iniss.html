@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INISS - Hlášení</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="iniss.css">
+</head>
+<body>
+    <div id="announcement-type-buttons">
+        <h1>Vyberte typ hlášení:</h1>
+        <button onclick="setAnnounceType('prijede')">Přijede</button>
+        <button onclick="setAnnounceType('pristaven')">Přistaven</button>
+        <button onclick="setAnnounceType('odjede')">Odjede</button>
+        <button onclick="setAnnounceType('zpozdeni')">Zpoždění</button>
+        <button onclick="setAnnounceType('nejede')">Nejede</button>
+    </div>
+    <div id="train-type-buttons" style="display: none;">
+        <h1>Vyberte typ vlaku:</h1>
+        <button onclick="setTrainType('osobnivlak')">Osobní Vlak</button>
+        <button onclick="setTrainType('rychlik')">Rychlík</button>
+        <button onclick="setTrainType('eurocity')">Vlak Eurocity</button>
+        <!-- <button onclick="setTrainType('vlakrj')">Vlak RJ</button> -->
+    </div>
+    <div id="train-number-buttons" style="display: none;">
+        <h1>Vyberte číslo vlaku:</h1>
+        <button onclick="setTrainNumber('2540')">2540</button>
+        <button onclick="setTrainNumber('723')">723</button>
+        <button onclick="setTrainNumber('283')">283</button>
+        <button onclick="setTrainNumber('124')">124</button>
+        <button onclick="setTrainNumber('812')">812</button>
+        <button onclick="setTrainNumber('815')">815</button>
+        <!-- <button onclick="setTrainNumber('1001')">1001</button> -->
+    </div>
+    <div id="train-line-buttons" style="display: none;">
+        <h1>Vyberte linku vlaku:</h1>
+        <button onclick="setTrainLine('S9')">S9</button>
+        <button onclick="setTrainLine('R17')">R17</button>
+        <button onclick="setTrainLine('R13')">R13</button>
+        <button onclick="setTrainLine('Ex1')">Ex1</button>
+        <button onclick="setTrainLine('Ex7')">Ex7</button>
+    </div>
+    <div id="train-operator-buttons" style="display: none;">
+        <h1>Vyberte dopravce vlaku:</h1>
+        <button onclick="setTrainOperator('ceskedrahy')">České Dráhy</button>
+        <button onclick="setTrainOperator('cekamdlouho')">Čekám Dlouho</button>
+        <!-- <button onclick="setTrainOperator('regiojet')">Regiojet</button> -->
+    </div>
+    <div id="train-destination-buttons" style="display: none;">
+        <h1>Vyberte směr vlaku:</h1>
+        <button onclick="setTrainDestination('benesov')">Benešov u Prahy</button>
+        <button onclick="setTrainDestination('ceskebudejovice')">České Budějovice</button>
+        <button onclick="setTrainDestination('navsi')">Návsí</button>
+        <button onclick="setTrainDestination('brnohln')">Brno Hl. N.</button>
+        <button onclick="setTrainDestination('hodonin')">Hodonín</button>
+    </div>
+    <div id="train-departure-buttons" style="display: none;">
+        <h1>Vyberte odjezd vlaku:</h1>
+        <button onclick="setTrainDeparture('1023')">10:23</button>
+        <button onclick="setTrainDeparture('1535')">15:35</button>
+        <button onclick="setTrainDeparture('1703')">17:03</button>
+        <button onclick="setTrainDeparture('1721')">17:21</button>
+        <button onclick="setTrainDeparture('1800')">18:00</button>
+    </div>
+
+    <div id="train-delay-buttons" style="display: none;">
+        <h1>Vyberte dobu zpoždění vlaku:</h1>
+        <button onclick="setTrainDelay('10')">10 minut</button>
+        <button onclick="setTrainDelay('15')">15 minut</button>
+        <button onclick="setTrainDelay('20')">20 minut</button>
+        <button onclick="setTrainDelay('25')">25 minut</button>
+        <button onclick="setTrainDelay('30')">30 minut</button>
+        <button onclick="setTrainDelay('35')">35 minut</button>
+        <button onclick="setTrainDelay('40')">40 minut</button>
+        <button onclick="setTrainDelay('45')">45 minut</button>
+        <button onclick="setTrainDelay('50')">50 minut</button>
+        <button onclick="setTrainDelay('55')">55 minut</button>
+        <button onclick="setTrainDelay('60')">60 minut</button>
+        <button onclick="setTrainDelay('480')">480 minut</button>
+    </div>
+    <div id="train-delay_reason-buttons" style="display: none;">
+        <h1>Vyberte zpoždění vlaku:</h1>
+        <button onclick="setTrainDelayReason('vyluka')">Výluka</button>
+        <button onclick="setTrainDelayReason('technickazavada')">Technická závada na Vlaku</button>
+        <button onclick="setTrainDelayReason('provozniduvod')">Provozní důvod dopravce</button>
+        <button onclick="setTrainDelayReason('mimoradnaudalost')">Mimořádná událost</button>
+        <button onclick="setTrainDelayReason('lopatkanauhli')">Lopatka na uhlí</button>
+    </div>
+    <div id="train-cancel_reason-buttons" style="display: none;">
+        <h1>Vyberte zpoždění vlaku:</h1>
+        <button onclick="setCancelReason('vyluka')">Výluka</button>
+        <button onclick="setCancelReason('technickazavada')">Technická závada na Vlaku</button>
+        <button onclick="setCancelReason('provozniduvod')">Provozní důvod dopravce</button>
+        <button onclick="setCancelReason('mimoradnaudalost')">Mimořádná událost</button>
+        <button onclick="setCancelReason('lopatkanauhli')">Lopatka na uhlí</button>
+    </div>
+    <div id="train-track-buttons" style="display: none;">
+        <h1>Vyberte číslo nástupiště:</h1>
+        <button onclick="setTrainTrack('1')">1</button>
+        <button onclick="setTrainTrack('2')">2</button>
+        <button onclick="setTrainTrack('3')">3</button>
+        <button onclick="setTrainTrack('4')">4</button>
+        <button onclick="setTrainTrack('5')">5</button>
+        <button onclick="setTrainTrack('6')">6</button>
+        <button onclick="setTrainTrack('7')">7</button>
+    </div>
+    <div id="train-platform-buttons" style="display: none;">
+        <h1>Vyberte typ nástupiště:</h1>
+        <button onclick="setTrainPlatform('jih')">Jižní Část</button>
+        <button onclick="setTrainPlatform('sever')">Severní Část</button>
+    </div>
+    <div id="announce-button" style="display: none;">
+        <h1>Přehrajte vámi vybraný hlášení:</h1>
+        <button onclick="playAnnouncement()">Přehrát hlášení</button>
+    </div>
+</body>
+</html>

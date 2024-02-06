@@ -1,79 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matyáš Macke</title>
-    <link rel="stylesheet" href="style/style.css" />
-    <script src="script.js"></script>
-    <script src="https://kit.fontawesome.com/f6c4cb663e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="index.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  </head>
-  <body>
-    <nav class="nav">
-      <ul>
-        <li><a href="#" class="nav-link active" data-link="home">Home</a></li>
-        <li><a href="#about-me" class="nav-link" data-link="about">O mně</a></li>
-        <li><a href="#stories" class="nav-link" data-link="portfolio">Příběhy</a></li>
-        <li><a href="#contact" class="nav-link" data-link="contact">Kontakt</a></li>
-      </ul>
-    </nav>
-
-    <div class="bg-image">
-      <div class="overlay">
-        <h1>Matyáš Macke</h1>
-        <p>creepypasty | bowling | urbex</p>
-      </div>
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+</head>
+<body>
+    <div class="nav">
+        <a href="#" onclick="myHome()">Home</a>
+        <a href="#" onclick="myAbout()">About Me</a>
+        <a href="#" onclick="myProjects()">My Projects</a>
+        <a href="#" onclick="myFAQ()">F.A.Q</a>
     </div>
-
-    <div class="container">
-      <section class="about about-window" id="about-me">
-        <h2>O mně</h2>
+    <div class="text" id="text" style="display: block;">
+        <h1>
+            Matyáš Macke
+        </h1>
         <p>
-          Jmenuji se Matyáš Macke a je mi 17 let. Studuji informační technologie na střední škole <a href="https://oaneveklov.cz/" style="text-decoration: none; color: #015f5c;" onclick="redirect()" target="_blank">Obchodní akademie Neveklov</a>. Mým oblýbeným 
-          sportem je Bowling. Hraji ho už přibližně 12 let a můj nejvyšší nához je 277. Hodně mě zajímají počítače, sítě, umělá inteligence a programování a stojím si za
-          názorem, že počítače jsou dneska nedílnou součástí našeho světa a je to budoucnost lidstva. 
-          Moje oblíbená činnost je procházení opuštěných míst, konkrétně opuštěných nádraží a kolejí. Doufám, že se vám líbí můj web. 
+            BOWLING | CREEPYPASTA | PROGRAMMING
         </p>
-      </section>
+        <a href="#" onclick="myAbout()">About Me</a>
+    </div>
+    <div class="about" id="about" style="display: none;">
+        <h1 style="text-transform: uppercase;">
+            About Me
+        </h1>
+        <p>
+            My name is Matyáš Macke. Im 17 years old, and i am profesional bowling player since i was 4 years old. I played one-handed bowling until the summer of 2023, but this summer
+            I have made drastic change. That means, I started playing two-handed bowling, because it is much easier, and you can get more of your bowling game. This change was success,
+            and my numbers in bowling rapidly incresed.
+            I am learning Web development (HTML, CSS, JavaScript). Although i am beginner, i have some experience with Web development.
+            I am studying 2nd year on <a href="https://www.oaneveklov.cz" target="_blank">Obchodní Akademie Neveklov</a>
+            My biggest interests are in the Universe, creepy stuff, abandoned places and transportation (Trains, Subways...). Thinking about "How big is the Universe" makes me amized every time and scared. My most liked abandoned place to explore is abandoned railway and train stations. 
+            I also trying to make videos on these topics, especially on the creepy topic on youtube 
+            channel called <a href="https://www.youtube.com/@GloomySecrets" target="_blank">Gloomy Secrets</a>. Right now I am writing my own creepy stories (Creepypasta),
+            my longest story is 18 lists in word long, and it is my biggest creepypasta so far. I will be reading them on youtube when they are finished. 
+            As I said, i am interested in transportation, that mean i like to travel by trains or subways, especially subway. My most favourite subway system
+            is in Prague and London. When I was in London with my grandmother, we took at least part of every tube line. It was such an amaizing experience for both of us. You can look at some photos on my <a href="https://www.instagram.com/matyas.macke/" target="_blank">instagram account</a>, where i also have some bowling videos from practice and tournaments. I also have portraits of myself on this Instagram, taken by my cousin (<a href="https://www.instagram.com/jan.levinsky.cr3/" target="_blank">His instagram is here.</a>). 
+        </p>
+    </div>
+    <div class="project" id="project" style="display: none;">
+        <a href="iniss.html" target="_blank">Hlášení na nádraží</a>
+        <a href="#" onclick="myStories()">CREEPYPASTY</a>
+    </div>
+    <div class="faq" id="faq" style="display: none;">
+        <h1>
+            ERROR 404
+        </h1>
+        <p>
+            This part of the website is currently under maintenance.
+        </p>
     </div>
 
-    <section class="portfolio" id="stories">
-    <h2 class="story">Moje vlastní příběhy</h2>
-    <div class="story-container">
-      <div class="story-box">
-        <a href="#" onclick="working()">
-          <img src="images/nkzhs.jpg" alt="Kolej"/>
-          <h3>Nekonečná kolej za hranicí světa</h3>
+    <div class="stories" id="stories" style="display: none;">
+        <h2 class="story">MY OWN CREEPY STORIES</h2>
+        <div class="story-box">
+            <a href="#" onclick="working()">
+            <img src="images/nkzhs.jpg" alt="Kolej"/>
+            <h3>Nekonečná kolej za hranicí světa</h3>
         </a>
-      </div>
-      
-      
-    </div>
-  </section>
-  <footer class="footer" id="contact">
-    <div class="container">
-      <div class="row">
-        <div class="footer-col">
-          <h4>info :</h4>
-          <ul>
-            <li><a href="#" onclick="soon()">F.A.Q</a></li>
-            <li><a href="#stories" onclick="soon()">ke stažení</a></li>
-            <li><a href="#stories">moje příběhy</a></li>
-          </ul>
         </div>
-        <div class="footer-col">
-          <h4>kontaktuj mě :</h4>
-          <div class="social-links">
-            <a href="https://www.youtube.com/@Macke." target="_blank" id="youtube"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.instagram.com/matyas.macke" target="_blank" id="instagram"><i class="fab fa-instagram" ></i></a>
-            <a href="#" onclick="errormsg()" id="creepypasty"><i class="fa-solid fa-ghost"></i></a>
-          </div>
-        </div>
-      </div>
+          
     </div>
- </footer>
-  
-  </body>
+    
+
+</body>
+
+<script>
+    function myProjects() {
+        document.getElementById('text').style.display = "none";
+        document.getElementById('project').style.display = "flex";
+        document.getElementById('about').style.display = "none";
+        document.getElementById('faq').style.display = "none";
+        document.getElementById('stories').style.display = "none";
+    }
+
+    function myAbout() {
+        document.getElementById('text').style.display = "none";
+        document.getElementById('project').style.display = "none";
+        document.getElementById('about').style.display = "block";
+        document.getElementById('faq').style.display = "none";
+        document.getElementById('stories').style.display = "none";
+    }
+
+    function myHome() {
+        document.getElementById('text').style.display = "block";
+        document.getElementById('project').style.display = "none";
+        document.getElementById('about').style.display = "none";
+        document.getElementById('faq').style.display = "none";
+        document.getElementById('stories').style.display = "none";
+    }
+    function myFAQ() {
+        document.getElementById('text').style.display = "none";
+        document.getElementById('project').style.display = "none";
+        document.getElementById('about').style.display = "none";
+        document.getElementById('faq').style.display = "block";
+        document.getElementById('stories').style.display = "none";
+    }
+
+    function myStories() {
+        document.getElementById('text').style.display = "none";
+        document.getElementById('project').style.display = "none";
+        document.getElementById('about').style.display = "none";
+        document.getElementById('faq').style.display = "none";
+        document.getElementById('stories').style.display = "flex";
+    }
+
+    function working(){
+    Swal.fire({
+      title: 'Coming Soon!',
+      text: 'I am currently working on this story.',
+      icon: 'info',
+    })
+  }
+</script>
+
 </html>
