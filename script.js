@@ -14,7 +14,7 @@ let platformType = "";
 let getGong = new Audio("audio/gong.mp3");
 let getEndGong = new Audio("audio/endgong.mp3");
 
-fetch('cesta_k_json_souboru.json')
+fetch('audioFiles.json')
     .then(response => response.json())
     .then(data => {
         for (var i = 0; i < data.audioFiles.length; i++) {
