@@ -3,12 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INISS - Hlášení</title>
+    <title>Hlášení na nádraží.</title>
     <script src="script.js?rndstr=<%= getRandomStr() %>"></script>
     <link rel="stylesheet" href="iniss.css">
 </head>
 <body>
-    <div id="announcement-type-buttons">
+    <div id="announcement-gong-buttons">
+        <h1>Vyberte znělku:</h1>
+        <button onclick="setAnnounceGong('iniss', 'iniss')">INSS</button>
+        <button onclick="setAnnounceGong('havis', 'havis')">HaVIS</button>
+        <button onclick="setAnnounceGong('newhavis', 'havis')">HaVIS 3 - Nová znělka</button>
+        <button onclick="setAnnounceGong('his', 'his')">HIS-VOICE</button>
+        <button onclick="setAnnounceGong('vysehrad', 'iniss')">Vyšehrad</button>
+        <button onclick="setAnnounceGong('kone', 'his')">Já mám koně</button>
+        <button onclick="setAnnounceGong('nightjet', 'iniss')">NightJet</button>
+    </div>
+    <div id="announcement-type-buttons" style="display: none;">
         <h1>Vyberte typ hlášení:</h1>
         <button onclick="setAnnounceType('prijede')">Přijede</button>
         <button onclick="setAnnounceType('pristaven')">Přistaven</button>

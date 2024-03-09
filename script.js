@@ -11,8 +11,8 @@ let trainDelay = "";
 let delayReason = "";
 let cancelReason = "";
 let platformType = "";
-let getGong = new Audio("audio/gong.mp3");
-let getEndGong = new Audio("audio/endgong.mp3");
+let getGong = "";
+let getEndGong = "";
 
 fetch('audioFiles.json')
     .then(response => response.json())
@@ -22,6 +22,9 @@ fetch('audioFiles.json')
         }
     });
 
+window.onload = function() {
+    alert("Tato stránka je ve vývoji, všechny nahrávky jsou vlastní, znělky jsou z reálných nádraží.")
+}
 
 function preloadAudio(url) {
     var audio = new Audio();
@@ -29,6 +32,12 @@ function preloadAudio(url) {
     audio.preload = "auto";
 }
 
+function setAnnounceGong (anngong, annendgong) {
+    getGong = anngong;
+    getEndGong = annendgong;
+    document.getElementById("announcement-gong-buttons").style.display = "none";
+    document.getElementById("announcement-type-buttons").style.display = "block";
+}
 
 function setAnnounceType (anntype) {
     announceType = anntype;
@@ -122,10 +131,11 @@ function setCancelReason (cancel) {
 }
 
 function playAnnouncement() {
-    getGong.play();
+    let getGongPlay = new Audio(`audio/${getGong}_zacatek.mp3`)
+    getGongPlay.play();
 
     if (announceType == "odjede") {
-        getGong.addEventListener('ended', function () {
+        getGongPlay.addEventListener('ended', function () {
             let getTrainType = new Audio(`audio/${trainType}.mp3`)
             getTrainType.play(); 
 
@@ -178,9 +188,10 @@ function playAnnouncement() {
                                                             getPlatformType.play()
         
                                                             getPlatformType.addEventListener('ended', function() {
-                                                                getEndGong.play();
+                                                                let getEndGongPlay = new Audio(`audio/${getEndGong}_konec.mp3`)
+                                                                getEndGongPlay.play();
 
-                                                                getEndGong.addEventListener('ended', function() {
+                                                                getEndGongPlay.addEventListener('ended', function() {
                                                                     location.reload();
                                                                 })
                                                                 
@@ -199,7 +210,7 @@ function playAnnouncement() {
             })
         })
     } else if (announceType == "zpozdeni") {
-        getGong.addEventListener('ended', function () {
+        getGongPlay.addEventListener('ended', function () {
             let getAnnouncementType = new Audio(`audio/${announceType}.mp3`)
             getAnnouncementType.play();
 
@@ -273,9 +284,10 @@ function playAnnouncement() {
                                                                             })
                                                                         } else if (delayReason == "lopatkanauhli" || "provozniduvod" || "technickazavada" || "vyluka") {
                                         
-                                                                            getEndGong.play();
-                                                                    
-                                                                            getEndGong.addEventListener('ended', function() {
+                                                                            let getEndGongPlay = new Audio(`audio/${getEndGong}_konec.mp3`)
+                                                                            getEndGongPlay.play();
+
+                                                                            getEndGongPlay.addEventListener('ended', function() {
                                                                                 location.reload();
                                                                             })
                                                                         }
@@ -297,7 +309,7 @@ function playAnnouncement() {
             })
         })
     } else if (announceType == "pristaven") {
-        getGong.addEventListener('ended', function () {
+        getGongPlay.addEventListener('ended', function () {
             let getTrainType = new Audio(`audio/${trainType}.mp3`)
             getTrainType.play(); 
 
@@ -350,9 +362,10 @@ function playAnnouncement() {
                                                             getPlatformType.play()
         
                                                             getPlatformType.addEventListener('ended', function() {
-                                                                getEndGong.play();
+                                                                let getEndGongPlay = new Audio(`audio/${getEndGong}_konec.mp3`)
+                                                                getEndGongPlay.play();
 
-                                                                getEndGong.addEventListener('ended', function() {
+                                                                getEndGongPlay.addEventListener('ended', function() {
                                                                     location.reload();
                                                                 })
                                                                 
@@ -371,7 +384,7 @@ function playAnnouncement() {
             })
         })
     } else if (announceType == "prijede") {
-        getGong.addEventListener('ended', function () {
+        getGongPlay.addEventListener('ended', function () {
             let getTrainType = new Audio(`audio/${trainType}.mp3`)
             getTrainType.play(); 
 
@@ -424,9 +437,10 @@ function playAnnouncement() {
                                                             getPlatformType.play()
         
                                                             getPlatformType.addEventListener('ended', function() {
-                                                                getEndGong.play();
+                                                                let getEndGongPlay = new Audio(`audio/${getEndGong}_konec.mp3`)
+                                                                getEndGongPlay.play();
 
-                                                                getEndGong.addEventListener('ended', function() {
+                                                                getEndGongPlay.addEventListener('ended', function() {
                                                                     location.reload();
                                                                 })
                                                                 
@@ -445,7 +459,7 @@ function playAnnouncement() {
             })
         })
     } else if (announceType == "nejede") {
-        getGong.addEventListener('ended', function () {
+        getGongPlay.addEventListener('ended', function () {
             let getInfo = new Audio(`audio/pozor.mp3`)
             getInfo.play();
 
@@ -498,9 +512,10 @@ function playAnnouncement() {
                                                             getInfoOperator.play();
 
                                                             getInfoOperator.addEventListener('ended', function() {
-                                                                getEndGong.play();
-                                                            
-                                                                getEndGong.addEventListener('ended', function() {
+                                                                let getEndGongPlay = new Audio(`audio/${getEndGong}_konec.mp3`)
+                                                                getEndGongPlay.play();
+
+                                                                getEndGongPlay.addEventListener('ended', function() {
                                                                     location.reload(); 
                                                                 })
                                                             })
