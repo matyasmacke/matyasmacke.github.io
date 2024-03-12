@@ -276,6 +276,7 @@ function playAnnouncement() {
                                                                             getInfoOperator.play()
 
                                                                             getInfoOperator.addEventListener('ended', function() {
+                                                                                let getEndGongPlay = new Audio(`audio/${getEndGong}_konec.mp3`)
                                                                                 getEndGong.play();
                                                                         
                                                                                 getEndGong.addEventListener('ended', function() {
